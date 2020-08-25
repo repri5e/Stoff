@@ -1,1 +1,155 @@
-/*Пустой*/
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            height: 100vh;
+            width: 100vw;
+            font-family: "Trebuchet ms";
+            background-color: rgba(245, 245, 245, 1);
+        }
+
+        #interface {
+            margin: 0;
+            height: 100vh;
+            display: grid;
+            grid-template-areas:
+                "header header header"
+                "asideLeft main asideRight"
+                "footer footer footer";
+            grid-template-rows: 1fr 10fr 1fr;
+            grid-template-columns: 1fr 8fr 1fr;
+        }
+
+        pageHeader,
+        pageAsideLeft,
+        pageAsideRight,
+        pageMain,
+        pageFooter {
+            background-color: green;
+            padding: 20px;
+        }
+
+        .header,
+        .aside-left,
+        .aside-right,
+        .main,
+        .footer {}
+
+        .header {
+            grid-area: header;
+            display: grid;
+            grid-template-areas: "logo gridNav searchBox";
+            grid-template-rows: "1fr 4fr 1fr";
+        }
+
+        .aside-left {
+            grid-area: asideLeft;
+        }
+
+        .aside-right {
+            grid-area: asideRight;
+        }
+
+        .main {
+            grid-area: main;
+        }
+
+        .footer {
+            grid-area: footer;
+        }
+
+        .site-logo {
+            grid-area: logo;
+        }
+
+        .menu {
+            grid-area: gridNav;
+        }
+
+        .search {
+            grid-area: searchBox;
+        }
+        
+        .menu{
+            margin-left: 6%;
+            margin-right: 6%;
+        }
+        
+        .menu-items{
+            display: block;
+        }
+        
+        .menu-items li{
+            display: flex;
+            float: left;
+            align-content: center;
+            justify-content: center;
+            list-style-type: none;
+            width: 33.333%;
+            top: 50%;
+            background-color: rgba(245, 245, 245, 1);
+            cursor: pointer;
+        }
+        
+        .menu-items li a{
+            padding: 20px;
+            color: rgba(0, 30, 0, 0.8);
+            font-size: 2em;
+            text-decoration: none
+        }
+        
+        .menu-items li:hover{
+            background-color: rgba(230, 230, 230, 0.8);
+        }
+        
+        
+        
+    </style>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+</head>
+
+<body>
+    <div id="interface">
+        <header class="header">
+                <div class="site-logo"></div>
+            <nav class="menu">
+                <ul class="menu-items">
+                    <li><a href="#">Social</a></li>
+                    <li><a href="#">Messages</a></li>
+                    <li><a href="#">Activities</a></li>
+                </ul>
+            </nav>
+            <div class="search">
+                <form action="">
+                    <input type="search">
+                    <i class="fa fa-search"></i>
+                </form>
+            </div>
+            <div class="user"></div>
+        </header>
+        <main class="main">
+
+        </main>
+        <aside class="aside-left">
+
+        </aside>
+        <aside class="aside-right">
+
+        </aside>
+        <footer class="footer">
+
+        </footer>
+    </div>
+</body>
+
+</html>
