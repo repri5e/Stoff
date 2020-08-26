@@ -1,45 +1,43 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const MongoClient = require('mongodb').MongoClient;
+const passport = require('passport');
+const mongoose = require('mongoose');
+
+const config = require('./config/db')
+const entrance = require('./routes/entrance')
+const social = require('./routes/social')
 
 const app = express();
 const port = 6060;
-const urlencodedParser = bodyParser.urlencoded({extended: false});
-const mongoClient = new MongoClient("mongodb://localhost:27017/", { useNewUrlParser: true });
 
 app.set('view engine', 'ejs');
-app.set("views", path.join(__dirname, "views"));
-app.use(express.static(__dirname + '/public'));
+app.set('views', path.join(__dirname, 'views'));
 
-app.get('/', (request, response) => {
-	response.render('enter', {
-		title: 'Вход'
-	});
+app.use(express.static(__dirname + 'public'));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(bodyParser.json());
+
+require('./config/passport')(passport);
+
+mongoose.connect(config.db, {
+	useNewUrlParser: true,
+	useUnifiedTopology: true
 });
 
-app.post('/', urlencodedParser, (request, response) => {
-
+mongoose.connection.on('connected', () => {
+	console.log('Connected to database');
 });
 
-app.get('/register', (request, response) => {
-	response.render('registration', {
-		title: 'Регистрация'
-	});
+mongoose.connection.on('error', (err) => {
+	console.log(`Error occured while connecting to database: ${err}`);
 });
 
-app.post('/register', urlencodedParser, (request, response) => {
+app.use('/entrance', entrance);
 
-});
-
-app.get('/main', (request, response) => {
-	
-});
-
-app.post('/main', urlencodedParser, (request, response) => {
-	
-});
+app.use('/social', social);
 
 app.listen(port, () => {
-    console.log(`Application launched at port ${port}`);
+	console.log(`Application launched at port ${port}`);
 });
