@@ -8,6 +8,7 @@ const config = require('../config/db');
 
 router.get('/', (request, response) => {
 	response.redirect('/entrance/enter');
+	// will be modified
 });
 
 router.get('/enter', (request, response) => {
