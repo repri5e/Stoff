@@ -18,6 +18,10 @@ app.get('/', (request, response) => {
 	});
 });
 
+app.post('/', urlencodedParser, (request, response) => {
+
+});
+
 app.get('/register', (request, response) => {
 	response.render('registration', {
 		title: 'Регистрация'
@@ -25,28 +29,15 @@ app.get('/register', (request, response) => {
 });
 
 app.post('/register', urlencodedParser, (request, response) => {
-		if (!request.body){
-		redirect('/register');
-	} else {
-		let login = request.body.login_field;
-		let password = request.body.password_field;
-		mongoClient.connect(function(err, client){
- 
-    	if(err){
-        	return console.log(err);
-    	} else {
-    		console.log('connected to db');
-    		console.log(login, password);
-    		client.close();
-    	}
-});
-	}
+
 });
 
 app.get('/main', (request, response) => {
-    response.render('index', {
-        title: 'Главная',     
-    });
+	
+});
+
+app.post('/main', urlencodedParser, (request, response) => {
+	
 });
 
 app.listen(port, () => {
