@@ -7,15 +7,16 @@ const config = require('../config/db');
 
 
 router.get('/', (request, response) => {
-	response.redirect('main');
-	/*
+	response.redirect('/entrance/enter');
+});
+
+router.get('/enter', (request, response) => {
 	response.render('enter', {
 		title: 'Вход'
 	});
-	*/
 });
 
-router.post('/', (request, response) => {
+router.post('/enter', (request, response) => {
 
 });
 

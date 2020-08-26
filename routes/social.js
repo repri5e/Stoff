@@ -6,8 +6,12 @@ const jwt = require('jsonwebtoken');
 const config = require('../config/db');
 
 router.get('/', (request, response) => {
-	response.render('index', {
-		title: 'Главная'
+	response.redirect('/social/news');
+});
+
+router.get('/news', passport.authenticate('jwt', {session: false}), (request, response) => {
+	response.render('news', {
+		title: 'Новости'
 	});
 });
 

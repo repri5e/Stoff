@@ -34,6 +34,10 @@ mongoose.connection.on('error', (err) => {
 	console.log(`Error occured while connecting to database: ${err}`);
 });
 
+app.get('/', (reqiest, response) => {
+	response.redirect('/social');
+});
+
 app.use('/entrance', entrance);
 
 app.use('/social', social);

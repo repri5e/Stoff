@@ -6,9 +6,7 @@ module.exports = (passport) => {
 	const ExtractJwt = require('passport-jwt').ExtractJwt;
 	const opts = {}
 	opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-	opts.secretOrKey = 'secret';
-	opts.issuer = 'accounts.examplesoft.com';
-	opts.audience = 'yoursite.net';
+	opts.secretOrKey = config.secret;
 	passport.use(new JwtStrategy(opts, (jwt_payload, done) => {
 		User.findOne({login: jwt_payload.sub}, (err, user) => {
 			if (err) {
