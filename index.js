@@ -21,10 +21,19 @@ app.use(bodyParser.json());
 
 require('./config/passport')(passport);
 
-mongoose.connect(config.db, {
-	useNewUrlParser: true,
-	useUnifiedTopology: true
-});
+async function start() {
+	try {
+		await mongoose.connect(config.db, {
+			useNewUrlParser: true,
+			useUnifiedTopology: true
+		});
+	} catch(e) {
+		console.log('Error while connecting to DB');
+		process.exit(code:1);
+	}
+}
+
+start()
 
 mongoose.connection.on('connected', () => {
 	console.log('Connected to database');
@@ -34,7 +43,7 @@ mongoose.connection.on('error', (err) => {
 	console.log(`Error occured while connecting to database: ${err}`);
 });
 
-app.get('/', (reqiest, response) => {
+app.get('/', (request, response) => {
 	response.redirect('/social');
 });
 
